@@ -177,14 +177,9 @@ void Add()
     int token = 0;
     cout << "\n\n\t\t\t Add New Product";
 
-    // Input new product details
     cout << "\n\n\t Product code: ";
     int newProductCode = GetValidIntInput();
 
-    // Check if the product code already exists
-    // You can add your implementation here
-
-    // If product code is unique, continue adding the product
     cout << "\n\n\t Name of the product: ";
     string productName;
     cin >> productName;
@@ -193,7 +188,6 @@ void Add()
     cout << "\n\n\t Discount on Product: ";
     float discount = GetValidFloatInput();
 
-    // Open file to append new product details
     data.open("database.txt", ios::app | ios::out);
     if (!data)
     {
@@ -201,13 +195,11 @@ void Add()
         return;
     }
 
-    // Write new product details to file
     data << newProductCode << " "
          << productName << " "
          << price << " "
          << discount << "\n";
 
-    // Close file
     data.close();
 
     cout << "\n\n\t\t Record Inserted !";
@@ -338,10 +330,8 @@ void Receipt()
     float Total = 0;
     cout << "\n\n\t\t\t\t RECEIPT ";
 
-    // Display all available products
     List();
 
-    // Open the file to read product details
     data.open("database.txt", ios::in);
     if (!data)
     {
@@ -360,10 +350,8 @@ void Receipt()
             cout << "\n\n Enter the Product Quantity: ";
             int quantity = GetValidIntInput();
 
-            // Clear the cin buffer
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-            // Open the file again to read product details
             data.open("database.txt", ios::in);
             int ProductCode;
             string ProductName;
@@ -379,7 +367,7 @@ void Receipt()
                     Total += discountedAmount;
                     cout << "| " << ProductCode << " | " << ProductName << " | " << quantity << " | " << Price << " | " << amount << " | " << discountedAmount << " |\n";
                     found = true;
-                    break; // Product found, exit loop
+                    break; 
                 }
             }
             data.close();
